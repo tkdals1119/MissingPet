@@ -132,7 +132,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mClusterManager = new ClusterManager<Person>(this, mMap);
         mClusterManager.setRenderer(new PersonRenderer());
-        mMap.setOnCameraIdleListener(mClusterManager);
+        mMap.setOnCameraChangeListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
         mClusterManager.setOnClusterClickListener(this);
@@ -204,5 +204,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onClusterItemInfoWindowClick(Person person) {
 
+    }
+    protected GoogleMap getMap() {
+        return mMap;
     }
 }
