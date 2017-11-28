@@ -1,36 +1,17 @@
 package com.jbnu.capstone.missingpet;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.clustering.Cluster;
-import com.google.maps.android.clustering.ClusterItem;
-import com.google.maps.android.clustering.ClusterManager;
-import com.google.maps.android.clustering.view.DefaultClusterRenderer;
-import com.google.maps.android.ui.IconGenerator;
-import com.jbnu.capstone.missingpet.model.MultiDrawable;
-import com.jbnu.capstone.missingpet.model.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
+public abstract class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private GoogleMap mMap;
 
@@ -56,12 +37,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(37.555744, 126.970431);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("서울이당"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        startDemo();
+    }
 
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
-        googleMap.animateCamera(zoom);
+    protected abstract void startDemo();
+
+    protected GoogleMap getMap() {
+        return mMap;
     }
 }
