@@ -23,4 +23,13 @@ public class Person implements ClusterItem {
         return mPosition;
     }
 
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Override
+    public String getSnippet() {
+        return null;
+    }
 }

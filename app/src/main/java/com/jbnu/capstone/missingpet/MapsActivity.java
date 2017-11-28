@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -132,6 +133,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mClusterManager = new ClusterManager<Person>(this, mMap);
         mClusterManager.setRenderer(new PersonRenderer());
+
+//        final CameraPosition[] mPreviousCameraPosition = {null};
+//        mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+//            @Override
+//            public void onCameraIdle() {
+//                CameraPosition position = null;
+//                mClusterManager.cluster();
+//                if(mPreviousCameraPosition[0] == null || mPreviousCameraPosition[0].zoom != position.zoom) {
+//                    mPreviousCameraPosition[0] = mMap.getCameraPosition();
+//                    mClusterManager.cluster();
+//                }
+//            }
+//        });
         mMap.setOnCameraIdleListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
@@ -149,15 +163,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mClusterManager.addItem(new Person(position(), "Walter", R.drawable.heize));
 
         // http://www.flickr.com/photos/usnationalarchives/4726917149/
-        mClusterManager.addItem(new Person(position2(), "Gran", R.drawable.heize2));
+        mClusterManager.addItem(new Person(position(), "Gran", R.drawable.heize2));
     }
 
     private LatLng position() {
-        return new LatLng(51.503186, -0.126446);
-    }
-
-    private LatLng position2() {
-        return new LatLng(51.503190, -0.126459);
+        return new LatLng(random(51.6723432, 51.38494009999999), random(0.148271, -0.3514683));
     }
 
     private double random(double min, double max) {
