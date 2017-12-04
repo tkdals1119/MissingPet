@@ -1,11 +1,15 @@
 package com.jbnu.capstone.missingpet;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.BinderThread;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,10 +30,15 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
 import com.jbnu.capstone.missingpet.model.MultiDrawable;
 import com.jbnu.capstone.missingpet.model.Person;
+import com.jbnu.capstone.missingpet.ui.WriteActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, ClusterManager.OnClusterClickListener<Person>, ClusterManager.OnClusterInfoWindowClickListener<Person>, ClusterManager.OnClusterItemClickListener<Person>, ClusterManager.OnClusterItemInfoWindowClickListener<Person> {
 
@@ -46,6 +55,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        ButterKnife.bind(this);
+
+        findViewById(R.id.addbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, WriteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class PersonRenderer extends DefaultClusterRenderer<Person> {
@@ -133,19 +151,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mClusterManager = new ClusterManager<Person>(this, mMap);
         mClusterManager.setRenderer(new PersonRenderer());
-
-//        final CameraPosition[] mPreviousCameraPosition = {null};
-//        mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-//            @Override
-//            public void onCameraIdle() {
-//                CameraPosition position = null;
-//                mClusterManager.cluster();
-//                if(mPreviousCameraPosition[0] == null || mPreviousCameraPosition[0].zoom != position.zoom) {
-//                    mPreviousCameraPosition[0] = mMap.getCameraPosition();
-//                    mClusterManager.cluster();
-//                }
-//            }
-//        });
         mMap.setOnCameraIdleListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
@@ -167,7 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private LatLng position() {
-        return new LatLng(random(51.6723432, 51.38494009999999), random(0.148271, -0.3514683));
+        return new LatLng(random(37.555744, 37.555800), random(126.970431, 126.98000));
     }
 
     private double random(double min, double max) {
@@ -203,7 +208,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onClusterInfoWindowClick(Cluster<Person> cluster) {
-
     }
 
     @Override
