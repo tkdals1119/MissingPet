@@ -5,7 +5,7 @@
     <item
         android:id="@+id/addfile"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_attachment_black_24dp"
+        android:icon="@drawable/ic_camera_enhance_black_24dp"
         android:title="사진 추가"/>
 
     <item

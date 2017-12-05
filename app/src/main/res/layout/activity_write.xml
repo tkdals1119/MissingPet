@@ -28,6 +28,7 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:ems="10"
             android:clickable="false"
             android:focusable="false"
@@ -50,18 +51,29 @@
             android:ems="10"
             android:hint="Content"
             android:scrollHorizontally="false" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+            android:id="@+id/taken_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center" />
+            <!--android:onClick="onClick"/>-->
+        </LinearLayout>
 
-        <com.joooonho.SelectableRoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/image0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/heize"
-            android:scaleType="centerCrop"
-            app:sriv_left_top_corner_radius="16dip"
-            app:sriv_right_top_corner_radius="0dip"
-            app:sriv_left_bottom_corner_radius="48dip"
-            app:sriv_right_bottom_corner_radius="16dip" />
+
+        <!--<com.joooonho.SelectableRoundedImageView-->
+            <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+            <!--android:id="@+id/image0"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/heize"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--app:sriv_left_top_corner_radius="16dip"-->
+            <!--app:sriv_right_top_corner_radius="0dip"-->
+            <!--app:sriv_left_bottom_corner_radius="48dip"-->
+            <!--app:sriv_right_bottom_corner_radius="16dip" />-->
 
 
     </LinearLayout>
