@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".DetailViewActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
 
             <intent-filter>
@@ -42,8 +42,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+        <activity android:name=".DetailViewActivity"></activity>
         <activity android:name=".ui.WriteActivity"></activity>
 
         <provider

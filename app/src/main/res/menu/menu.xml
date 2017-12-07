@@ -6,13 +6,13 @@
         android:id="@+id/addfile"
         android:icon="@drawable/ic_camera_enhance_black_24dp"
         android:title="사진 추가"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/send"
         android:icon="@drawable/ic_send_black_24dp"
         android:title="보내기"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
 
 </menu>
