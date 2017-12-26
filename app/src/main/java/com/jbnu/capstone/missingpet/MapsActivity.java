@@ -28,6 +28,7 @@ import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
+import com.jbnu.capstone.missingpet.model.GpsInfo;
 import com.jbnu.capstone.missingpet.model.MultiDrawable;
 import com.jbnu.capstone.missingpet.model.Person;
 import com.jbnu.capstone.missingpet.ui.WriteActivity;
@@ -55,6 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         ButterKnife.bind(this);
 
         findViewById(R.id.addbutton).setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View view) {
                 Intent intent = new Intent(MapsActivity.this, WriteActivity.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -140,9 +143,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        GpsInfo gps = new GpsInfo(MapsActivity.this);
+        double latitude = gps.getLatitude();
+        double longitude = gps.getLongitude();
+        LatLng latLng = new LatLng(latitude, longitude);
+
+
+
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(37.555744, 126.970431);
+        LatLng sydney = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(sydney).title("서울이당"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
